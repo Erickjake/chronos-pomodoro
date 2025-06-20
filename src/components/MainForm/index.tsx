@@ -56,6 +56,23 @@ export default function MainForm() {
     useEffect(() => {
         console.log(state)
     }, [state])
+
+    function handleInterruptTask() {
+        setState(prevState => {
+            return {
+                ...prevState,
+                activeTask: null,
+                secondsRemaining: 0,
+                formattedSecondsRemaining: '00:00',
+                tasks: prevState.tasks.map(task => {
+                    if (prevState.activeTask && prevState.activeTask.id === task.id) {
+                        return { ...task, interruptDate: Date.now() }
+                    }
+                    return task
+                })
+            }
+        })
+    }
     return (
         <form onSubmit={handleCreateNewTask} action="" className="form">
             <div className="formRow">
@@ -75,19 +92,24 @@ export default function MainForm() {
             )}
 
             <div className="formRow">
-                {!state.activeTask ? (
+                {!state.activeTask && (
                     <DefaultButton
                         aria-label="Interromper tarefa"
                         title="Interromper tarefa"
                         type="submit"
+                        key='botao_submit'
                         icon={<PlayCircleIcon />} />
-                ) : (<DefaultButton
-                    aria-label="Iniciar tarefa"
-                    title="Iniciar tarefa"
-                    color="red"
-                    type="button"
-                    icon={<StopCircleIcon />}
-                />)}
+
+                )} {state.activeTask && (
+                    <DefaultButton
+                        aria-label="Iniciar tarefa"
+                        title="Iniciar tarefa"
+                        color="red"
+                        type="button"
+                        key='botao_button'
+                        onClick={handleInterruptTask}
+                        icon={<StopCircleIcon />}
+                    />)}
             </div>
         </form>)
 }
