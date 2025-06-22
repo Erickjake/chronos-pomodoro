@@ -13,19 +13,18 @@ export enum TaskActionsTypes {
   RESET_STATE = "RESET_STATE",
 }
 
-export type TaskActionsWithPayload =
+export type TaskActionsWithPayload = {
+  type: TaskActionsTypes.START_TASK;
+  payload: TaskModel;
+};
+
+export type TaskActionsWithoutPayload =
   | {
-      type: TaskActionsTypes.START_TASK;
-      payload: TaskModel;
+      type: TaskActionsTypes.RESET_STATE;
     }
   | {
       type: TaskActionsTypes.INTERRUPT_TASK;
-      payload: TaskModel;
     };
-
-export type TaskActionsWithoutPayload = {
-  type: TaskActionsTypes.RESET_STATE;
-};
 
 export type TaskActionModel =
   | TaskActionsWithPayload
