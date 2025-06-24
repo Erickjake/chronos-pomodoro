@@ -47,6 +47,8 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         if (!state.activeTask) {
             worker.terminate();
         }
+
+        document.title = `${state.formattedSecondsRemaining} - ${state.activeTask ? state.activeTask.name : 'Timer'}`;
         worker.postMessage(state)
     }, [worker, state])
 
