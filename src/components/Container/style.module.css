@@ -1,15 +1,12 @@
+.container-fluid {
+  max-width: auto;
+}
+
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-width: 120rem;
-	margin: 0 auto;
+  max-width: 98rem;
+  margin: 0 auto;
 }
 
 .content {
-	margin: 3.2rem;
-}
-
-.container-fluid {
-	max-width: auto;
+  margin: 3.2rem;
 }

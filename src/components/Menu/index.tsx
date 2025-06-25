@@ -29,10 +29,11 @@ export function Menu() {
             <RouterLink href="/" aria-label='Ir para a Home' title='Ir para a Home' className={styles.menuLink}>
                 <HouseIcon />
             </RouterLink>
-            <RouterLink href="/" aria-label='Ver Historico' title='Ver Historico' className={styles.menuLink}>
+            <RouterLink href="/History" aria-label='Ver Historico' title='Ver Historico' className={styles.menuLink}>
                 <HistoryIcon />
             </RouterLink>
-            <RouterLink href="/" aria-label='Configuracoes' title='Configuracoes' className={styles.menuLink}>
+            <RouterLink href="/Settings" aria-label='Configuracoes' title='Configuracoes' className={styles.menuLink}>
+
                 <SettingsIcon />
             </RouterLink>
             <RouterLink href="/" aria-label='Alterar Tema' title='Alterar Tema' className={styles.menuLink} onClick={handleClickTheme}>

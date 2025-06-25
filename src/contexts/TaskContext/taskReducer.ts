@@ -1,11 +1,12 @@
-import type { TaskStateModel } from "../../models/TaskStateModel";
-import { formatSecondsTominutes } from "../../utils/formatSecondsToMinutes";
-import { getNextCycle } from "../../utils/getNextCycle";
-import { TaskActionsTypes, type TaskActionModel } from "./taskActions";
+import type { TaskStateModel } from '../../models/TaskStateModel';
+import { formatSecondsTominutes } from '../../utils/formatSecondsToMinutes';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { initialState } from './initialTaskState';
+import { TaskActionsTypes, type TaskActionModel } from './taskActions';
 
 export function taskReducer(
   state: TaskStateModel,
-  action: TaskActionModel
+  action: TaskActionModel,
 ): TaskStateModel {
   switch (action.type) {
     case TaskActionsTypes.START_TASK: {
@@ -27,8 +28,8 @@ export function taskReducer(
         ...state,
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        tasks: state.tasks.map((task) => {
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
           if (state.activeTask && state.activeTask.id === task.id) {
             return { ...task, interruptDate: Date.now() };
           }
@@ -37,15 +38,15 @@ export function taskReducer(
       };
     }
     case TaskActionsTypes.RESET_STATE: {
-      return state;
+      return { ...initialState };
     }
     case TaskActionsTypes.COMPLETED_TASK: {
       return {
         ...state,
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        tasks: state.tasks.map((task) => {
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
           if (state.activeTask && state.activeTask.id === task.id) {
             return { ...task, completedDate: Date.now() };
           }
@@ -58,7 +59,7 @@ export function taskReducer(
         ...state,
         secondsRemaining: action.payload.secondsRemaining,
         formattedSecondsRemaining: formatSecondsTominutes(
-          action.payload.secondsRemaining
+          action.payload.secondsRemaining,
         ),
       };
     }
