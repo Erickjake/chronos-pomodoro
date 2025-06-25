@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Container } from "../../components/Container";
 import GenericHtml from "../../components/GenericHtml";
 import { Heading } from "../../components/Heading";
@@ -6,6 +7,9 @@ import MainTemplate from "../../templates/MainTemplate";
 
 
 export default function About() {
+    useEffect(() => {
+        document.title = 'Chronos - About';
+    }, [])
     return (
         <MainTemplate>
             <Container>

@@ -63,6 +63,12 @@ export function taskReducer(
         ),
       };
     }
+    case TaskActionsTypes.CHANGE_SETTINGS: {
+      return {
+        ...state,
+        config: { ...action.payload },
+      };
+    }
   }
   return state;
 }
